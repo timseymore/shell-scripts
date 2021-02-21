@@ -26,6 +26,8 @@ else
 	    git commit -m "Intial Commit"
 	    git status
 	    echo "Setup Complete."
+	    cd ..
+	    ls -la
 	    exit 0
 	    ;;
 	[nN])
