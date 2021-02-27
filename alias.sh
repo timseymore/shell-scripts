@@ -65,6 +65,7 @@ case "$FLAG" in
 	git config --global alias.delrm "remote rm"
 	git config --global alias.mvrm "remote rename"
 	git config --global alias.ta "tag -a"
+	git config --global alias.count "count-objects -Hv"
 	echo "Finished setting alias."
 	list-alias
 	;;
