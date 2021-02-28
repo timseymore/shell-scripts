@@ -11,7 +11,7 @@ case "$CMD" in
     start)
 	echo "Setting up shell environment..."
 	cd ./temp
-	if [$? -eq 0]
+	if [ $? -eq "0" ]
 	then
 	    for FILE in *
 	    do
@@ -28,7 +28,7 @@ case "$CMD" in
     stop)
 	echo "Cleaning up shell environment..."
 	cd ./temp
-	if [ $? -eq 0 ]
+	if [ $? -eq "0" ]
 	then
 	    for FILE in *
 	    do
