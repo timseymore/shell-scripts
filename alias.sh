@@ -14,26 +14,47 @@ FLAG="$1"
 
 # Functions
 
+function show-help() {
+    echo "       Usage Flags"
+    echo "==========================="
+    echo "-l : List all current alias"
+    echo "-s : Set up common Git alias"
+    echo "-h : Show help screen"
+    return 0
+}
+
+
 function list-alias() {
     echo "Git Alias Settings"
     echo "=================="
     git config --list | grep alias
     echo "=================="
     echo "    Complete"
-    exit 0
+    return 0
 }
 
+function set-alias() {
+        
+
+    return 0
+}
+
+function make-exit-status() {
+    if [ $? == 0 ]
+    then
+	echo "Success."
+    else
+	echo "Failure: exit status ${?}."
+    fi
+    return $?
+}
 
 
 # Run
 
 case "$FLAG" in
-    -h)	
-	echo "       Usage Flags"
-	echo "==========================="
-	echo "-l : List all current alias"
-	echo "-s : Set up common Git alias"
-	echo "-h : Show help screen"
+    -h)
+	show-help
 	;;
     -l)
 	list-alias
@@ -45,7 +66,7 @@ case "$FLAG" in
 	git config --global alias.unset "config --global --unset"
 	git config --global alias.last "log -1 HEAD"
 	git config --global alias.unstage "reset HEAD--"
-	git config --global alias.lg "log --pretty=format:'%C(cyan dim)%h%C(green bold no-dim)%d%n%C(red dim)%cs %C(white): %C(cyan)%an %C(yellow)<%ae>%n%C(white no-dim no-bold)%B' --graph --all"
+	git config --global alias.lg "log --pretty=format:'%C(cyan dim)%h%C(green bold no-dim)%d%n%C(red dim)%D %C(white): %C(cyan)%an %C(yellow)<%ae>%n%C(white no-dim no-bold)%B' --graph --all"
 	git config --global alias.lgo "log --pretty=format:'%C(cyan dim)%h%C(green bold no-dim)%d %C(cyan bold): %C(red dim)%cr %C(cyan no-dim bold)-> %C(white no-bold)%s' --graph --all"
 	git config --global alias.ci commit
 	git config --global alias.ca "commit -a"
@@ -72,7 +93,8 @@ case "$FLAG" in
     *)
 	echo "Usage: $SCRIPT [ -l | -s | -h ]"
 	echo "Use -h flag for more help."
-	exit 1
+	;;
 esac
 
-exit 0
+make-exit-status
+exit $?
