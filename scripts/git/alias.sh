@@ -4,8 +4,11 @@
 
 SCRIPT="$0"
 FLAG="$1"
+USAGEMSG="Usage: $SCRIPT < -l | -s | -h >"
 
 function show-help() {
+    echo"$USAGEMSG"
+    echo ""
     echo "       Usage Flags"
     echo "==========================="
     echo "-l : List all current alias"
@@ -28,18 +31,19 @@ function set-alias() {
     local VALUE=$2
 
     echo "Setting 'git ${1}' to 'git ${2}'."
-    git config -- global "alias.${VALUE}" "$NAME" && echo Success || echo "Failed: $1 not set" 
+    git config -- global "alias.${VALUE}" "$NAME" && echo "Success" || echo "Failed: $1 not set." 
     return 0
 }
 
 function make-exit-status() {
-    if [ $? == 0 ]
+    local STATUS=$?
+    if [ $STATUS == 0 ]
     then
 	echo "Success."
     else
-	echo "Failure: exit status ${?}."
+	echo "Failure: exit status ${STATUS}."
     fi
-    return $?
+    return $STATUS
 }
 
 
@@ -84,7 +88,7 @@ case "$FLAG" in
 	list-alias
 	;;
     *)
-	echo "Usage: $SCRIPT [ -l | -s | -h ]"
+	echo "$USAGEMSG"
 	echo "Use -h flag for more help."
 	;;
 esac
