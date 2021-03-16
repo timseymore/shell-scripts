@@ -7,11 +7,8 @@ OPT1=$1
 OPT2=$2
 OPT3=$3
 OPT4=$4
+USAGEMSG="Usage: $SCRIPT <help|option1> <option2> <option3>"
 
-function show-usage() {
-    echo "Usage: $SCRIPT <help|option1> <option2> <option3>"
-    return 0
-}
 
 function show-commands() {
     echo " __________________________________________________________________"
@@ -26,7 +23,7 @@ function show-commands() {
 }
 
 function show-help() {
-    show-usage
+    echo "$USAGEMSG"
     echo " "
     show-commands
     echo" "
@@ -52,7 +49,7 @@ function set-color() {
 
 case "$OPT1" in
     "")
-	show-usage
+	echo "$USAGEMSG"
 	;;
     "help")
 	show-help $OPT2
