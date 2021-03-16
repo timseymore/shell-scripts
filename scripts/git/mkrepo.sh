@@ -2,25 +2,28 @@
 
 # sets up new github repo #
 
+SCRIPT=$0
 REPO=$1
+USAGEMSG="Usage: $SCRIPT <repo-name>"
 
-if [ $REPO = help ]
+
+if [ "$REPO" = "" ]
 then
-    echo "Usage ./mkrepo.sh [repo name]"
+    echo "$USAGEMSG"
 else
     read -p "Create local git repository in directory ${REPO}? [y/n]" ANS
     case "$ANS" in
-	[yY])
+	[yY]*)
 	    git init $REPO
-	    echo "Creating README.txt"
-	    touch ${REPO}/README.txt
+	    echo "Creating README.md"
+	    touch ${REPO}/README.md
 	    echo "Creating .gitignore file"
 	    touch ${REPO}/.gitignore
 	    echo "Changing to repository"
 	    cd $REPO
 	    ls -la
 	    echo "Adding new files..."
-	    git add .gitignore README.txt
+	    git add .gitignore README.md
 	    git status
 	    echo "Creating Intial Commit..."
 	    git commit -m "Intial Commit"
@@ -30,7 +33,7 @@ else
 	    ls -la
 	    exit 0
 	    ;;
-	[nN])
+	[nN]*)
 	    echo Cancelling...
 	    exit 1
 	    ;;
@@ -38,6 +41,5 @@ else
 	    echo "Invalid input, Cancelling..."
 	    exit 2
 	    ;;
-    esac
-    
+    esac    
 fi
