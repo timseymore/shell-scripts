@@ -37,6 +37,7 @@ function set-alias() {
 
 function make-exit-status() {
     local STATUS=$?
+
     if [ $STATUS == 0 ]
     then
 	echo "Success."
