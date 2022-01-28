@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sets up new github repo #
+# Sets up new github repo #
 
 SCRIPT=$0
 REPO=$1
