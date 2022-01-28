@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# compiles a C source file into an executable program
+# Compiles a C source file into an executable program.
 
 SCRIPT="$0"
 NAME="$1"
 
 case $NAME in
     "")
-	echo "Usage: $0 [out]"
+	echo "Usage: ${SCRIPT} [out]"
 	;;
     *)
 	if [ -f "${NAME}.c" ]
